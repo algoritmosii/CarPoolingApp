@@ -1,6 +1,5 @@
 package ort.aed2.ob20152;
 
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;

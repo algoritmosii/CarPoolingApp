@@ -1,7 +1,6 @@
 package ort.aed2.ob20152;
 
 
-
 public class Sistema implements ISistema {
 
 	public Retorno inicializarSistema (int cantPuntos) {
@@ -39,7 +38,7 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno asignarUbicacionMovil(String matricula, String coordX, String coordY) {
+	public Retorno asignarUbicacionMovil(String matricula, Double coordX, Double coordY) {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
 	}

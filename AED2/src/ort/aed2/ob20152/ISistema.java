@@ -1,6 +1,5 @@
 package ort.aed2.ob20152;
 
-
 // Interfaz del sistema
 // No modificar esta clase!!!!!!!!!
 public interface ISistema {
@@ -17,7 +16,7 @@ public interface ISistema {
 	
 	Retorno habilitarMovil(String matricula);
 	
-	Retorno asignarUbicacionMovil(String matricula, String coordX, String coordY);
+	Retorno asignarUbicacionMovil(String matricula, Double coordX, Double coordY);
 	
 	Retorno buscarMovil(String matricula);
 	
