@@ -15,7 +15,16 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno registrarMovil(String matricula, String conductor) {
-		// TODO reemplazar por su implementacion
+		ArbolABB abb = new ArbolABB();		
+		
+		if (abb.buscar(matricula) != null) {
+			return new Retorno();	
+		}
+		// Creo el movil
+		Movil m = new Movil(matricula, conductor);
+		
+		abb.insertar(m);
+		
 		return new Retorno();
 	}
 

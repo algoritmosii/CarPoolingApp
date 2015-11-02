@@ -4,7 +4,13 @@ public class Movil {
 	
 	public String matricula;
 	public String nombreConductor;
-	
+			
+	public Movil(String matricula, String nombreConductor) {
+		super();
+		this.matricula = matricula;
+		this.nombreConductor = nombreConductor;
+	}
+
 	public String getMatricula() {
 		return matricula;
 	}
