@@ -15,6 +15,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno registrarMovil(String matricula, String conductor) {
+		Retorno r = new Retorno();
 		ArbolABB abb = new ArbolABB();		
 		
 		if (abb.buscar(matricula) != null) {
@@ -24,8 +25,10 @@ public class Sistema implements ISistema {
 		Movil m = new Movil(matricula, conductor);
 		
 		abb.insertar(m);
-		
-		return new Retorno();
+		r.resultado = Retorno.Resultado.OK;
+		r.valorString="";
+		return r;
+		//return new Retorno();
 	}
 
 	@Override
