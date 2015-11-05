@@ -1,5 +1,6 @@
 package ort.aed2.ob20152;
 
+import ort.aed2.ob20152.Enumerados.estadoMovil;
 
 public class Sistema implements ISistema {
 
@@ -16,19 +17,22 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno registrarMovil(String matricula, String conductor) {
 		Retorno r = new Retorno();
+		Enumerados.estadoMovil estado = estadoMovil.DISPONIBLE;
+
 		ArbolABB abb = new ArbolABB();		
 		
 		if (abb.buscar(matricula) != null) {
-			return new Retorno();	
+			r.resultado = Retorno.Resultado.ERROR_1;
+			r.valorString = "Ya existe un móvil con la misma matrícula.";
+			return r;
 		}
 		// Creo el movil
-		Movil m = new Movil(matricula, conductor);
+		
+		Movil m = new Movil(matricula, conductor, estado);
 		
 		abb.insertar(m);
 		r.resultado = Retorno.Resultado.OK;
-		r.valorString="";
 		return r;
-		//return new Retorno();
 	}
 
 	@Override

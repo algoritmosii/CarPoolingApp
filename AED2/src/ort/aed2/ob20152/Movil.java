@@ -4,11 +4,21 @@ public class Movil {
 	
 	public String matricula;
 	public String nombreConductor;
+	public Enumerados estado;
 			
-	public Movil(String matricula, String nombreConductor) {
+	public Movil(String matricula, String nombreConductor, Enumerados estado) {
 		super();
 		this.matricula = matricula;
 		this.nombreConductor = nombreConductor;
+		this.estado = estado;
+	}
+
+	public Enumerados getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Enumerados estado) {
+		this.estado = estado;
 	}
 
 	public String getMatricula() {
@@ -26,8 +36,6 @@ public class Movil {
 	public void setNombreConductor(String nombreConductor) {
 		this.nombreConductor = nombreConductor;
 	}
-
-	public Enumerados estado;
 
 	@Override
 	public String toString() {
