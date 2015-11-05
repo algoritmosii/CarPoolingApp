@@ -4,21 +4,13 @@ public class Movil {
 	
 	public String matricula;
 	public String nombreConductor;
-	public Enumerados estado;
+	public Enumerados.estadoMovil estado;
 			
-	public Movil(String matricula, String nombreConductor, Enumerados estado) {
+	public Movil(String matricula, String nombreConductor, Enumerados.estadoMovil estadoMovil) {
 		super();
 		this.matricula = matricula;
 		this.nombreConductor = nombreConductor;
-		this.estado = estado;
-	}
-
-	public Enumerados getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Enumerados estado) {
-		this.estado = estado;
+		this.estado = estadoMovil;
 	}
 
 	public String getMatricula() {
@@ -39,7 +31,9 @@ public class Movil {
 
 	@Override
 	public String toString() {
-		return "Movil [matricula=" + matricula + ", nombreConductor=" + nombreConductor + ", estado=" + estado + "]";
+		return "Movil [matricula=" + matricula + ", nombreConductor=" + 
+
+nombreConductor + ", estado=" + estado + "]";
 	}
 	
 	
