@@ -4,11 +4,11 @@ import ort.aed2.ob20152.Enumerados.estadoMovil;
 
 public class Sistema implements ISistema {
 
-	public Retorno inicializarSistema (int cantPuntos) {
+	public Retorno inicializarSistema(int cantPuntos) {
 		// TODO: reemplazar por su implementacion
 		return new Retorno();
 	}
-	
+
 	public Retorno destruirSistema() {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
@@ -19,26 +19,38 @@ public class Sistema implements ISistema {
 		Retorno r = new Retorno();
 		Enumerados.estadoMovil estado = estadoMovil.DISPONIBLE;
 
-		ArbolABB abb = new ArbolABB();		
-		
+		ArbolABB abb = new ArbolABB();
+
 		if (abb.buscar(matricula) != null) {
 			r.resultado = Retorno.Resultado.ERROR_1;
 			r.valorString = "Ya existe un móvil con la misma matrícula.";
 			return r;
 		}
 		// Creo el movil
-		
+
 		Movil m = new Movil(matricula, conductor, estado);
-		
+
 		abb.insertar(m);
 		r.resultado = Retorno.Resultado.OK;
 		return r;
 	}
 
 	@Override
-	public Retorno deshabilitarMovil(String matricula) {
-		// TODO reemplazar por su implementacion
-		return new Retorno();
+	public Retorno deshabilitarMovil(String mat) {
+		ArbolABB abb = new ArbolABB();
+		NodoABB m = abb.buscar(mat); // TODO: buscarMovil(matricula)
+		
+		Retorno r = new Retorno();
+		if (m.getDato().estado.equals(Enumerados.estadoMovil.DISPONIBLE)) {
+			m.getDato().estado = Enumerados.estadoMovil.DESHABILITADO;  
+			r.resultado = r.resultado.OK;
+		} else {
+			if (m.getDato().estado.equals(Enumerados.estadoMovil.DESHABILITADO)
+					|| m.getDato().estado.equals(Enumerados.estadoMovil.ASGINADO)) {
+				r.resultado = r.resultado.ERROR_2;
+			}
+		}
+		return r;
 	}
 
 	@Override
@@ -113,7 +125,4 @@ public class Sistema implements ISistema {
 		return new Retorno();
 	}
 
-	
-
-	
 }
