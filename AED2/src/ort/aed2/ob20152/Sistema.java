@@ -5,9 +5,11 @@ import ort.aed2.ob20152.Enumerados.estadoMovil;
 
 public class Sistema implements ISistema {
 
+	Mapa mapa;
+
 	public Retorno inicializarSistema(int cantPuntos) {
 		Retorno r = new Retorno();
-		Mapa mapa = new Mapa();
+		mapa = new Mapa();
 		if (cantPuntos <= 0) {
 			r.resultado = Retorno.Resultado.ERROR_1;
 		} else if (mapa.crearGrafoVacio(cantPuntos))
@@ -17,8 +19,10 @@ public class Sistema implements ISistema {
 	}
 
 	public Retorno destruirSistema() {
-		// TODO reemplazar por su implementacion
-		return new Retorno();
+		Retorno r = new Retorno();
+		if (mapa.destruirGrafo())
+			r.resultado = Retorno.Resultado.OK;
+		return r;
 	}
 
 	@Override

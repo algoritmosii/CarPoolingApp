@@ -19,5 +19,7 @@ public interface IGrafoMapa {
 	public boolean existeVertice(int v);
 
 	public boolean esConexo();
+	
+	public boolean destruirGrafo();
 
 }
