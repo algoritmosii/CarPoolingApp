@@ -7,7 +7,6 @@ import org.junit.Test;
 import ort.aed2.ob20152.ISistema;
 import ort.aed2.ob20152.Retorno;
 import ort.aed2.ob20152.Sistema;
-import ort.aed2.ob20152.Retorno.Resultado;
 
 public class TestsSistema {
 
@@ -16,6 +15,7 @@ public class TestsSistema {
 		
 		ISistema sistema = new Sistema();
 		sistema.inicializarSistema(10);
+		
 		//Datos de la prueba
 		String conductor = "3.702.156-9";
 		String matricula = "ADB 1234";
