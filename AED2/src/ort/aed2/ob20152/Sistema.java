@@ -1,12 +1,19 @@
 package ort.aed2.ob20152;
 
+import mapa.Mapa;
 import ort.aed2.ob20152.Enumerados.estadoMovil;
 
 public class Sistema implements ISistema {
 
 	public Retorno inicializarSistema(int cantPuntos) {
-		// TODO: reemplazar por su implementacion
-		return new Retorno();
+		Retorno r = new Retorno();
+		Mapa mapa = new Mapa();
+		if (cantPuntos <= 0) {
+			r.resultado = Retorno.Resultado.ERROR_1;
+		} else if (mapa.crearGrafoVacio(cantPuntos))
+			r.resultado = Retorno.Resultado.OK;
+		System.out.println("salida" + r.resultado.name());
+		return r;
 	}
 
 	public Retorno destruirSistema() {
@@ -39,14 +46,15 @@ public class Sistema implements ISistema {
 	public Retorno deshabilitarMovil(String mat) {
 		ArbolABB abb = new ArbolABB();
 		NodoABB m = abb.buscar(mat); // TODO: buscarMovil(matricula)
-		
+
 		Retorno r = new Retorno();
 		if (m.getDato().estado.equals(Enumerados.estadoMovil.DISPONIBLE)) {
-			m.getDato().estado = Enumerados.estadoMovil.DESHABILITADO;  
+			m.getDato().estado = Enumerados.estadoMovil.DESHABILITADO;
 			r.resultado = r.resultado.OK;
 		} else {
 			if (m.getDato().estado.equals(Enumerados.estadoMovil.DESHABILITADO)
-					|| m.getDato().estado.equals(Enumerados.estadoMovil.ASGINADO)) {
+					|| m.getDato().estado
+							.equals(Enumerados.estadoMovil.ASGINADO)) {
 				r.resultado = r.resultado.ERROR_2;
 			}
 		}
@@ -66,7 +74,8 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno asignarUbicacionMovil(String matricula, Double coordX, Double coordY) {
+	public Retorno asignarUbicacionMovil(String matricula, Double coordX,
+			Double coordY) {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
 	}
@@ -90,7 +99,8 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno registrarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf, int metros) {
+	public Retorno registrarTramo(Double coordXi, Double coordYi,
+			Double coordXf, Double coordYf, int metros) {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
 	}
@@ -102,7 +112,8 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno eliminarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
+	public Retorno eliminarTramo(Double coordXi, Double coordYi,
+			Double coordXf, Double coordYf) {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
 	}
