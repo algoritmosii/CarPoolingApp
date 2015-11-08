@@ -97,5 +97,26 @@ public class ArbolABB {
 		System.out.println(nodo.getDato().getMatricula());
 		return nodo;
 	}
+	
+	public boolean esVacio() {
+		return raiz == null;
+	}
+	public void mostrar() {
+		if (esVacio())
+			System.out.println("No hay móviles registrados.");
+		else
+			mostrar(raiz);
+	}
+
+	
+	// Muestra InOrder
+		private void mostrar(NodoABB a) {
+			if (a != null) {
+				mostrar(a.nodoIzq);
+				System.out.println(a.getDato());
+				mostrar(a.nodoDer);
+			}
+		}
+
 
 }

@@ -121,8 +121,12 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno informeMoviles() {
-		// TODO reemplazar por su implementacion
-		return new Retorno();
+		Retorno r = new Retorno();
+		
+		abb.mostrar();
+		
+		r.resultado = r.resultado.OK;
+		return r;
 	}
 
 	@Override

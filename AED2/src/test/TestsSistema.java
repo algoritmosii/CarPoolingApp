@@ -58,6 +58,9 @@ public class TestsSistema {
 		Retorno ret7 = sistema.eliminarMovil(matricula2);
 		assertEquals(Retorno.Resultado.OK, ret7.resultado);
 
+		// informe moviles
+		Retorno ret8 = sistema.informeMoviles();
+		assertEquals(Retorno.Resultado.OK, ret8.resultado);	
 		
 	}
 	
