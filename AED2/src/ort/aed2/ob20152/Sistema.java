@@ -6,6 +6,7 @@ import ort.aed2.ob20152.Enumerados.estadoMovil;
 public class Sistema implements ISistema {
 
 	Mapa mapa;
+	ArbolABB abb = new ArbolABB();
 
 	public Retorno inicializarSistema(int cantPuntos) {
 		Retorno r = new Retorno();
@@ -30,15 +31,12 @@ public class Sistema implements ISistema {
 		Retorno r = new Retorno();
 		Enumerados.estadoMovil estado = estadoMovil.DISPONIBLE;
 
-		ArbolABB abb = new ArbolABB();
-
 		if (abb.buscar(matricula) != null) {
 			r.resultado = Retorno.Resultado.ERROR_1;
 			r.valorString = "Ya existe un móvil con la misma matrícula.";
 			return r;
 		}
 		// Creo el movil
-
 		Movil m = new Movil(matricula, conductor, estado);
 
 		abb.insertar(m);
@@ -48,8 +46,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno deshabilitarMovil(String mat) {
-		ArbolABB abb = new ArbolABB();
-		NodoABB m = abb.buscar(mat); // TODO: buscarMovil(matricula)
+		NodoABB m = abb.buscar(mat);
 
 		Retorno r = new Retorno();
 		if (m.getDato().estado.equals(Enumerados.estadoMovil.DISPONIBLE)) {
@@ -67,14 +64,46 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno eliminarMovil(String matricula) {
-		// TODO reemplazar por su implementacion
-		return new Retorno();
+		
+		NodoABB m = abb.buscar(matricula); 
+		Retorno r = new Retorno();
+		
+		if (abb.buscar(matricula) != null) {	
+			if (m.getDato().estado.equals(Enumerados.estadoMovil.ASGINADO)) {
+				r.resultado = Retorno.Resultado.ERROR_1;
+				r.valorString = "El móvil está asignado, por lo tanto no se puede eliminar.";
+				return r;
+			}
+			
+			abb.eliminar(matricula);
+			r.resultado = Retorno.Resultado.OK;
+			return r;
+		} 
+		
+		r.resultado = Retorno.Resultado.ERROR_1;
+		r.valorString = "No existe el móvil pasado como parámetro.";
+		
+		return r;
 	}
 
 	@Override
 	public Retorno habilitarMovil(String matricula) {
-		// TODO reemplazar por su implementacion
-		return new Retorno();
+		NodoABB m = abb.buscar(matricula);
+
+		Retorno r = new Retorno();
+		if (m.getDato().estado.equals(Enumerados.estadoMovil.DESHABILITADO)) {
+			m.getDato().estado = Enumerados.estadoMovil.DISPONIBLE;
+			r.resultado = r.resultado.OK;
+			r.valorString = "El móvil fué habilitado con éxito.";
+		} else {
+			if (m.getDato().estado.equals(Enumerados.estadoMovil.DISPONIBLE)
+					|| m.getDato().estado
+							.equals(Enumerados.estadoMovil.ASGINADO)) {
+				r.resultado = r.resultado.ERROR_2;
+				r.valorString = "El móvil ya estaba disponible o asignado.";
+			}
+		}
+		return r;
 	}
 
 	@Override
