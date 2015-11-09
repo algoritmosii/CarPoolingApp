@@ -8,18 +8,20 @@ public interface IGrafoMapa {
 
 	public void agregarArista(int origen, int destino, int peso);
 	
-	public void eliminarVertice(int numero);
+	//public void eliminarVertice(int numero);
 
-	public void eliminarArista(int origen, int destino);
+	//public void eliminarArista(int origen, int destino);
 
 	public boolean sonAdyacentes(int origen, int destino);
 
 	public ListaVert verticesAdyacentes(int vertice);
 	
-	public boolean existeVertice(int v);
+	//public boolean existeVertice(int v);
 
-	public boolean esConexo();
+	//public boolean esConexo();
 	
 	public boolean destruirGrafo();
+
+	boolean existeVertice(int v);
 
 }

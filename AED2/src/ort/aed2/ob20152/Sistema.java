@@ -1,16 +1,19 @@
 package ort.aed2.ob20152;
 
-import mapa.Mapa;
+import mapa.MapaGrafo;
 import ort.aed2.ob20152.Enumerados.estadoMovil;
 
 public class Sistema implements ISistema {
 
-	Mapa mapa;
+	MapaGrafo mapa;
 	ArbolABB abb = new ArbolABB();
 
+	// 2. deberia ejecutar el registrarEsquina para varias coord como parte de
+	// inicializarSistema?
 	public Retorno inicializarSistema(int cantPuntos) {
 		Retorno r = new Retorno();
-		mapa = new Mapa();
+		mapa = new MapaGrafo();
+
 		if (cantPuntos <= 0) {
 			r.resultado = Retorno.Resultado.ERROR_1;
 		} else if (mapa.crearGrafoVacio(cantPuntos))
@@ -63,25 +66,25 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno eliminarMovil(String matricula) {
-		
-		NodoABB m = abb.buscar(matricula); 
+
+		NodoABB m = abb.buscar(matricula);
 		Retorno r = new Retorno();
-		
-		if (abb.buscar(matricula) != null) {	
+
+		if (abb.buscar(matricula) != null) {
 			if (m.getDato().estado.equals(Enumerados.estadoMovil.ASGINADO)) {
 				r.resultado = Retorno.Resultado.ERROR_1;
 				r.valorString = "El móvil está asignado, por lo tanto no se puede eliminar.";
 				return r;
 			}
-			
+
 			abb.eliminar(matricula);
 			r.resultado = Retorno.Resultado.OK;
 			return r;
-		} 
-		
+		}
+
 		r.resultado = Retorno.Resultado.ERROR_1;
 		r.valorString = "No existe el móvil pasado como parámetro.";
-		
+
 		return r;
 	}
 
@@ -121,17 +124,17 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno informeMoviles() {
 		Retorno r = new Retorno();
-		
+
 		abb.mostrar();
-		
+
 		r.resultado = r.resultado.OK;
 		return r;
 	}
 
 	@Override
 	public Retorno registrarEsquina(Double coordX, Double coordY) {
-		// TODO reemplazar por su implementacion
-		return new Retorno();
+		Retorno r = mapa.registrarEsquina(coordX, coordY);
+		return r;
 	}
 
 	@Override

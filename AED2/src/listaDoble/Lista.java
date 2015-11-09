@@ -1,25 +1,24 @@
-package mapa;
+package listaDoble;
 
-public class ListaVert implements ILista {
+public class Lista implements IListaD {
 
-	EsquinaNodo inicio;
-	int peso;
+	NodoLD inicio;
 
-	public EsquinaNodo getInicio() {
+	public NodoLD getInicio() {
 		return inicio;
 	}
 
-	public void setInicio(EsquinaNodo inicio) {
+	public void setInicio(NodoLD inicio) {
 		this.inicio = inicio;
 	}
 
-	public ListaVert() {
+	public Lista() {
 		this.setInicio(null);
 	}
 
 	@Override
-	public void insertarInicio(int dest, int peso) {
-		EsquinaNodo nuevoNodo = new EsquinaNodo();
+	public void insertarInicio(String dato) {
+		NodoLD nuevoNodo = new NodoLD(dato);
 		nuevoNodo.setSiguiente(this.inicio);
 		this.inicio = nuevoNodo;
 	}
@@ -34,10 +33,9 @@ public class ListaVert implements ILista {
 		if (this.esVacia()) {
 			System.out.println("Lista vacia");
 		} else {
-			EsquinaNodo nodoAux = this.inicio;
+			NodoLD nodoAux = this.inicio;
 			while (nodoAux != null) {
-				System.out.println("X: " + nodoAux.getCoordX() + "-" + "Y: "
-						+ nodoAux.getCoordY());
+				System.out.println(nodoAux.getElemento());
 				nodoAux = nodoAux.getSiguiente();
 			}
 		}
@@ -54,13 +52,14 @@ public class ListaVert implements ILista {
 	public void borrarInicio() {
 		if (!this.esVacia())
 			this.inicio = this.inicio.getSiguiente();
+
 	}
 
 	@Override
-	public boolean existe(double x, double y) {
-		EsquinaNodo nodoAux = this.inicio;
+	public boolean existe(String valor) {
+		NodoLD nodoAux = this.inicio;
 		while (nodoAux != null) {
-			if (nodoAux.getCoordX() == x && nodoAux.getCoordY() == y) {
+			if (nodoAux.getElemento() == valor) {
 				return true;
 			}
 			nodoAux = nodoAux.getSiguiente();
@@ -68,4 +67,15 @@ public class ListaVert implements ILista {
 		return false;
 	}
 
+	@Override
+	public NodoLD buscarElemento(String valor) {
+		NodoLD nodoAux = this.inicio;
+		while (nodoAux != null) {
+			if (nodoAux.getElemento() == valor) {
+				return nodoAux;
+			}
+			nodoAux = nodoAux.getSiguiente();
+		}
+		return nodoAux;
+	}
 }
