@@ -33,11 +33,6 @@ public class Mapa implements IGrafoMapa {
 				this.verticesAdyacentes[i] = new ListaVert();
 			}
 			this.nodosUsados = new boolean[this.cantNodos + 1];
-			if (this.nodosUsados[0] == true) {
-				System.out.println(" el booleano inicializa en true");
-			} else {
-				System.out.println(" el booleano inicializa en false");
-			}
 			return true;
 		} catch (Exception e) {
 			// "Log: Error - crearGrafoVacio:" + e.toString();
@@ -48,12 +43,16 @@ public class Mapa implements IGrafoMapa {
 	@Override
 	public boolean destruirGrafo() {
 		try {
-			this.verticesAdyacentes = null;
+			this.verticesAdyacentes = new ListaVert[0];
 			this.nodosUsados = new boolean[0];
+			int cantVert = verticesAdyacentes.length;
+			for (int i = 0; i < cantVert; i++) {
+				this.verticesAdyacentes[i] = new ListaVert();
+			}
 
-			if (this.nodosUsados.length == 0) {
-				if (this.verticesAdyacentes == null) {
-					System.out.println("destruido");
+			if (this.verticesAdyacentes.length == 0) {
+				if (this.nodosUsados.length == 0) {
+					this.cantNodos = 0;
 					return true;
 				}
 			}

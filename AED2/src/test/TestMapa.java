@@ -10,23 +10,36 @@ import ort.aed2.ob20152.Retorno;
 import ort.aed2.ob20152.Sistema;
 
 public class TestMapa {
+
 	ISistema sistema;
 
 	@Before
-	public void prepararTest() {
+	public void contexto() {
 		sistema = new Sistema();
+
 	}
 
 	@Test
-	public void testInicializarSistema() {
+	public void testA_InicializarSistema() {
+		System.out.println(" test: inicializarSistema");
+		ISistema sistema;
+		sistema = new Sistema();
 		Retorno ret = sistema.inicializarSistema(10);
 		assertEquals(Retorno.Resultado.OK, ret.resultado);
+		@SuppressWarnings("unused")
+		Retorno ret2 = sistema.destruirSistema();
+		// TODO log resultados de test con fecha
 	}
 
 	@Test
-	public void testDestruirSistema() {
-		Retorno ret = sistema.destruirSistema();
-		assertEquals(Retorno.Resultado.OK, ret.resultado);
+	public void testB_DestruirSistema() {
+		System.out.println(" test: destruirSistema");
+		ISistema sistema;
+		sistema = new Sistema();
+		Retorno ret = sistema.inicializarSistema(10);
+		if (ret.resultado.equals(Retorno.Resultado.OK)) {
+			Retorno ret2 = sistema.destruirSistema();
+			assertEquals(Retorno.Resultado.OK, ret2.resultado);
+		}
 	}
-
 }

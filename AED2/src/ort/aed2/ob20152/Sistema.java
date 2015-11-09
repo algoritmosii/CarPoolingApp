@@ -15,7 +15,6 @@ public class Sistema implements ISistema {
 			r.resultado = Retorno.Resultado.ERROR_1;
 		} else if (mapa.crearGrafoVacio(cantPuntos))
 			r.resultado = Retorno.Resultado.OK;
-		System.out.println("salida" + r.resultado.name());
 		return r;
 	}
 
