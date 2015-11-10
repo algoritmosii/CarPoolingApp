@@ -85,12 +85,20 @@ public class MapaGrafo implements IGrafoMapa {
 		this.verticesAdyacentes[origen].insertarInicio(destino, peso);
 	}
 
+	/*
 	public Retorno registrarEsquina(Double coordX, Double coordY) {
 		Retorno r = new Retorno();
-		if(this.esquinas.insertar(coordX,coordY))
+		if(this.esquinas.insertar(coordX,coordY, this.cantNodos))
 			r.resultado = Retorno.Resultado.OK;
 		else
 			r.resultado = Retorno.Resultado.ERROR_1;
+		return r;
+	}
+	*/
+	public Retorno registrarEsquina(Double coordX, Double coordY) {
+		Retorno r = new Retorno();
+		r = esquinas.insertar(coordX,coordY, this.cantNodos);
+			
 		return r;
 	}
 	

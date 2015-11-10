@@ -6,7 +6,7 @@ public interface IListaD {
 
 	boolean esVacia();
 
-	void imprimir();
+	//void imprimir();
 
 	boolean existe(String valor);
 
@@ -15,4 +15,8 @@ public interface IListaD {
 	void vaciarLista();
 
 	NodoLD buscarElemento(String valor);
+
+	int getCantNodos();
+
+	void imprimir(int pos);
 }

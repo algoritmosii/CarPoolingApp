@@ -18,9 +18,13 @@ public class Lista implements IListaD {
 
 	@Override
 	public void insertarInicio(String dato) {
-		NodoLD nuevoNodo = new NodoLD(dato);
-		nuevoNodo.setSiguiente(this.inicio);
-		this.inicio = nuevoNodo;
+		if (!existe(dato)) {
+			NodoLD nuevoNodo = new NodoLD(dato);
+			nuevoNodo.setSiguiente(this.inicio);
+			this.inicio = nuevoNodo;
+		} else {
+			System.out.println("existe dato: " + dato);
+		}
 	}
 
 	@Override
@@ -29,7 +33,8 @@ public class Lista implements IListaD {
 	}
 
 	@Override
-	public void imprimir() {
+	public void imprimir(int pos) {
+		System.out.println("Imprimir Lista de pos" + pos);
 		if (this.esVacia()) {
 			System.out.println("Lista vacia");
 		} else {
@@ -39,6 +44,23 @@ public class Lista implements IListaD {
 				nodoAux = nodoAux.getSiguiente();
 			}
 		}
+	}
+
+	@Override
+	public int getCantNodos() {
+		int cant = 0;
+		if (this.esVacia()) {
+			return 0;
+		} else {
+			NodoLD nodoAux = this.inicio;
+			while (nodoAux != null) {
+				cant++;
+				System.out.println(nodoAux.getElemento());
+				nodoAux = nodoAux.getSiguiente();
+			}
+			System.out.println("getCantNodos: " + cant);
+		}
+		return cant;
 	}
 
 	@Override
@@ -59,11 +81,13 @@ public class Lista implements IListaD {
 	public boolean existe(String valor) {
 		NodoLD nodoAux = this.inicio;
 		while (nodoAux != null) {
-			if (nodoAux.getElemento() == valor) {
+			if (nodoAux.getElemento().equals(valor)) {
+				System.out.println("Lista.existe=true. Valor: " + valor);
 				return true;
 			}
 			nodoAux = nodoAux.getSiguiente();
 		}
+		System.out.println("Lista.existe=false. Valor: " + valor);
 		return false;
 	}
 

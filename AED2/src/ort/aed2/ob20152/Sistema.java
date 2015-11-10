@@ -131,10 +131,30 @@ public class Sistema implements ISistema {
 		return r;
 	}
 
+	/*
+	 * PRE: el largo coordX y coordY debe ser como maximo 11 caracteres y como
+	 * minimo 8 caracteres
+	 */
 	@Override
 	public Retorno registrarEsquina(Double coordX, Double coordY) {
-		Retorno r = mapa.registrarEsquina(coordX, coordY);
+		Retorno r = new Retorno();
+		if (coordenadasValidas(coordX, coordY)) {
+			r = mapa.registrarEsquina(coordX, coordY);
+		}
 		return r;
+	}
+
+	private boolean coordenadasValidas(Double coordX, Double coordY) {
+		String auxX = String.valueOf(coordX);
+		String auxY = String.valueOf(coordX);
+		int charsX = auxX.length();
+		int charsY = auxY.length();
+		if (charsX > 7 && charsX < 12) {
+			if (charsY > 7 && charsY < 12) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
