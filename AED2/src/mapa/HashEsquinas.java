@@ -14,34 +14,43 @@ public class HashEsquinas {
 			tabla[i] = new Lista();
 		}
 	}
+	
+	private int h(Integer llave) {
 
-	private int h(String llaveRaw) {
-		String llave = llaveRaw.replace(".", "");
-		llave = llave.replace("-", "");
-		return Integer.parseInt(llave) % tam;
+		return llave % tam;
 	}
-
-	public boolean pertenece(EsquinaNodo esquina) {
-		double coordX = esquina.getCoordX();
-		double coordY = esquina.getCoordY();
-		String llaveAInsertar = coordX + "-" + coordY;
-		int pos = h(llaveAInsertar);
-		return tabla[pos].existe(llaveAInsertar);
-	}
-
-	public boolean pertenece(String llave) {
+	
+	public boolean pertenece(Integer llave, String coordenadas) {
 		int pos = h(llave);
-		return tabla[pos].existe(llave);
+		return tabla[pos].existe(coordenadas);
 	}
 
 	public boolean insertar(Double coordX, Double coordY) {
-		String llave = coordX + "-" + coordY;
+		String coordenadas = coordX + "-" + coordY;
+		int llave = getLlave(coordX, coordY);
 		int pos = h(llave);
-		tabla[pos].insertarInicio(llave);
-		if (pertenece(llave)) {
+		tabla[pos].insertarInicio(coordenadas);
+		if (pertenece(llave, coordenadas)) {
 			return true;
 		}
 		return false;
 	}
 
+	private Integer getLlave(Double coordX, Double coordY) {
+		String r;
+		Integer salida;
+		String auxX = String.valueOf(coordX);
+		auxX = auxX.replace(".", "");
+		auxX = auxX.replace("-", "");
+		auxX = auxX.substring(5, 8);
+		
+		String auxY = String.valueOf(coordY);
+		auxY = auxY.replace(".", "");
+		auxY = auxY.replace("-", "");
+		auxY = auxY.substring(5, 8);
+		
+		r = auxX + "" + auxY;
+		salida = Integer.parseInt(r.trim());
+		return salida;
+	}
 }

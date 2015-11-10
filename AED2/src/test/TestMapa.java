@@ -2,8 +2,6 @@ package test;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -22,7 +20,7 @@ public class TestMapa {
 
 	@Test
 	public void testA_InicializarSistema() {
-		
+
 		System.out.println(" test: inicializarSistema");
 		ISistema sistema;
 		sistema = new Sistema();
@@ -30,26 +28,27 @@ public class TestMapa {
 		assertEquals(Retorno.Resultado.OK, ret.resultado);
 		@SuppressWarnings("unused")
 		Retorno ret2 = sistema.destruirSistema();
-		// TODO log resultados de test con fecha
 	}
 
 	@Test
 	public void testB_RegistrarEsquina() {
-		
+
 		System.out.println(" test: registrarEsquina");
 		ISistema sistema;
 		sistema = new Sistema();
 		Retorno ret = sistema.inicializarSistema(10);
 		if (ret.resultado.equals(Retorno.Resultado.OK)) {
-			Retorno ret2 = sistema.registrarEsquina(12.2, 22.2);
+			Double uniORTX = -34.9050291;
+			Double uniORTY = -56.1915827;
+			Retorno ret2 = sistema.registrarEsquina(uniORTX, uniORTY);
 			assertEquals(Retorno.Resultado.OK, ret2.resultado);
 		}
 	}
 
-	/*
+
 	@Test
 	public void testB_RegistrarEsquinasVarias() {
-		
+
 		System.out.println(" test: registrarEsquinasVarias");
 		ISistema sistema;
 		sistema = new Sistema();
@@ -73,12 +72,14 @@ public class TestMapa {
 
 			Double facArquitecturaX = -34.913232;
 			Double facArquitecturaY = -56.167944;
-			Retorno ret4 = sistema.registrarEsquina(facArquitecturaX, facArquitecturaY);
+			Retorno ret4 = sistema.registrarEsquina(facArquitecturaX,
+					facArquitecturaY);
 			assertEquals(Retorno.Resultado.OK, ret4.resultado);
 
 			Double tabernaDiabloX = -34.9124532;
 			Double tabernaDiabloY = -56.1693436;
-			Retorno ret5 = sistema.registrarEsquina(tabernaDiabloX, tabernaDiabloY);
+			Retorno ret5 = sistema.registrarEsquina(tabernaDiabloX,
+					tabernaDiabloY);
 			assertEquals(Retorno.Resultado.OK, ret5.resultado);
 
 			Double mNAVX = -34.913442;
@@ -98,11 +99,11 @@ public class TestMapa {
 
 			Double facQuimicaX = -34.8883007;
 			Double facQuimicaY = -56.1850452;
-			Retorno ret9 = sistema.registrarEsquina(facQuimicaX,facQuimicaY);
+			Retorno ret9 = sistema.registrarEsquina(facQuimicaX, facQuimicaY);
 			assertEquals(Retorno.Resultado.OK, ret9.resultado);
 		}
 	}
-*/
+
 	@Test
 	public void testD_DestruirSistema() {
 		System.out.println(" test: destruirSistema");
