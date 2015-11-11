@@ -1,5 +1,9 @@
 package mapa;
 
+import java.awt.Desktop;
+import java.net.URL;
+
+import listaDoble.Lista;
 import ort.aed2.ob20152.Retorno;
 
 public class MapaGrafo implements IGrafoMapa {
@@ -87,7 +91,7 @@ public class MapaGrafo implements IGrafoMapa {
 
 	public Retorno registrarEsquina(Double coordX, Double coordY) {
 		Retorno r = new Retorno();
-	
+
 		r = esquinas.insertar(coordX, coordY, this.cantMaxNodos);
 		if (r.resultado.equals(Retorno.Resultado.OK)) {
 			size++;
@@ -135,4 +139,27 @@ public class MapaGrafo implements IGrafoMapa {
 		return false;
 	}
 
+	public void levantarMapa(String url) {
+		try {
+			Desktop.getDesktop().browse(new URL(url).toURI());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void levantarMapaEnBrowser() {
+		String aux = "http://maps.googleapis.com/maps/api/staticmap?center=";
+		String dos = "Montevideo,Uruguay&zoom=13&size=1200x600&maptype=roadmap";
+		String nodo = getDataNodo();
+		String urlConstruida = aux + dos + nodo;
+		levantarMapa(urlConstruida);
+	}
+
+	private String getDataNodo() {
+		String aux = "&markers=color:yellow%7Clabel:1%7C-34.91,-56.16&markers=color:red%7Clabel:2%7C-34.91,-56.17&markers=color:green%7Clabel:3%7C-34.905,-56.19&sensor=false";
+		String coordenadas = "";
+		Lista[] lista = new Lista[this.size];
+		lista = this.esquinas.obtener();
+		return coordenadas;
+	}
 }

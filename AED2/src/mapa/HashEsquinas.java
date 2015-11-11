@@ -95,4 +95,12 @@ public class HashEsquinas {
 		salida = Integer.parseInt(r.trim());
 		return salida;
 	}
+
+	public Lista[] obtener() {
+		Lista[] nodos = new Lista[tam];
+		for (int i = 0; i < tam; i++) {
+			this.tabla[i].getCantNodos();
+		}
+		return nodos;
+	}
 }
