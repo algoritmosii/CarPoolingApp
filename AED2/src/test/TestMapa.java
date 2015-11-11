@@ -51,7 +51,7 @@ public class TestMapa {
 		System.out.println(" test: registrarEsquinasVarias");
 		ISistema sistema;
 		sistema = new Sistema();
-		Retorno ret = sistema.inicializarSistema(5);
+		Retorno ret = sistema.inicializarSistema(6);
 		if (ret.resultado.equals(Retorno.Resultado.OK)) {
 
 			System.out.println("Fac de quimica");
@@ -91,6 +91,12 @@ public class TestMapa {
 			Retorno ret4 = sistema.registrarEsquina(facArquitecturaX,
 					facArquitecturaY);
 			assertEquals(Retorno.Resultado.OK, ret4.resultado);
+			
+			System.out.println("Aeropuerto");
+			Double aeropuertoX = -34.8621083;
+			Double aeropuertoY = -56.0613573;
+			Retorno ret7 = sistema.registrarEsquina(aeropuertoX, aeropuertoY);
+			assertEquals(Retorno.Resultado.OK, ret7.resultado);
 
 			System.out.println("Taberna del diablo");
 			Double tabernaDiabloX = -34.9124532;
@@ -106,11 +112,7 @@ public class TestMapa {
 			assertEquals(Retorno.Resultado.ERROR_1, ret6.resultado);
 
 			/*	
-			System.out.println("Aeropuerto");
-			Double aeropuertoX = -34.8621083;
-			Double aeropuertoY = -56.0613573;
-			Retorno ret7 = sistema.registrarEsquina(aeropuertoX, aeropuertoY);
-			assertEquals(Retorno.Resultado.OK, ret7.resultado);
+		
 
 			System.out.println("Solis chico");
 			Double solisChicoX = -34.7535082;

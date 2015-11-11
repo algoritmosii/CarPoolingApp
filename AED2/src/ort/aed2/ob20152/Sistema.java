@@ -35,7 +35,7 @@ public class Sistema implements ISistema {
 
 		if (abb.buscar(matricula) != null) {
 			r.resultado = Retorno.Resultado.ERROR_1;
-			r.valorString = "Ya existe un móvil con la misma matrícula.";
+			r.valorString = "Ya existe un mï¿½vil con la misma matrï¿½cula.";
 			return r;
 		}
 		// Creo el movil
@@ -56,8 +56,7 @@ public class Sistema implements ISistema {
 			r.resultado = r.resultado.OK;
 		} else {
 			if (m.getDato().estado.equals(Enumerados.estadoMovil.DESHABILITADO)
-					|| m.getDato().estado
-							.equals(Enumerados.estadoMovil.ASGINADO)) {
+					|| m.getDato().estado.equals(Enumerados.estadoMovil.ASGINADO)) {
 				r.resultado = r.resultado.ERROR_2;
 			}
 		}
@@ -73,7 +72,7 @@ public class Sistema implements ISistema {
 		if (abb.buscar(matricula) != null) {
 			if (m.getDato().estado.equals(Enumerados.estadoMovil.ASGINADO)) {
 				r.resultado = Retorno.Resultado.ERROR_1;
-				r.valorString = "El móvil está asignado, por lo tanto no se puede eliminar.";
+				r.valorString = "El mï¿½vil estï¿½ asignado, por lo tanto no se puede eliminar.";
 				return r;
 			}
 
@@ -83,7 +82,7 @@ public class Sistema implements ISistema {
 		}
 
 		r.resultado = Retorno.Resultado.ERROR_1;
-		r.valorString = "No existe el móvil pasado como parámetro.";
+		r.valorString = "No existe el mï¿½vil pasado como parï¿½metro.";
 
 		return r;
 	}
@@ -96,21 +95,19 @@ public class Sistema implements ISistema {
 		if (m.getDato().estado.equals(Enumerados.estadoMovil.DESHABILITADO)) {
 			m.getDato().estado = Enumerados.estadoMovil.DISPONIBLE;
 			r.resultado = r.resultado.OK;
-			r.valorString = "El móvil fué habilitado con éxito.";
+			r.valorString = "El mï¿½vil fuï¿½ habilitado con ï¿½xito.";
 		} else {
 			if (m.getDato().estado.equals(Enumerados.estadoMovil.DISPONIBLE)
-					|| m.getDato().estado
-							.equals(Enumerados.estadoMovil.ASGINADO)) {
+					|| m.getDato().estado.equals(Enumerados.estadoMovil.ASGINADO)) {
 				r.resultado = r.resultado.ERROR_2;
-				r.valorString = "El móvil ya estaba disponible o asignado.";
+				r.valorString = "El mï¿½vil ya estaba disponible o asignado.";
 			}
 		}
 		return r;
 	}
 
 	@Override
-	public Retorno asignarUbicacionMovil(String matricula, Double coordX,
-			Double coordY) {
+	public Retorno asignarUbicacionMovil(String matricula, Double coordX, Double coordY) {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
 	}
@@ -145,21 +142,22 @@ public class Sistema implements ISistema {
 	}
 
 	private boolean coordenadasValidas(Double coordX, Double coordY) {
-		String auxX = String.valueOf(coordX);
-		String auxY = String.valueOf(coordX);
-		int charsX = auxX.length();
-		int charsY = auxY.length();
-		if (charsX > 7 && charsX < 12) {
-			if (charsY > 7 && charsY < 12) {
-				return true;
+		if (coordX != null && coordY != null) {
+			String auxX = String.valueOf(coordX);
+			String auxY = String.valueOf(coordX);
+			int charsX = auxX.length();
+			int charsY = auxY.length();
+			if (charsX > 7 && charsX < 12) {
+				if (charsY > 7 && charsY < 12) {
+					return true;
+				}
 			}
 		}
 		return false;
 	}
 
 	@Override
-	public Retorno registrarTramo(Double coordXi, Double coordYi,
-			Double coordXf, Double coordYf, int metros) {
+	public Retorno registrarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf, int metros) {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
 	}
@@ -171,8 +169,7 @@ public class Sistema implements ISistema {
 	}
 
 	@Override
-	public Retorno eliminarTramo(Double coordXi, Double coordYi,
-			Double coordXf, Double coordYf) {
+	public Retorno eliminarTramo(Double coordXi, Double coordYi, Double coordXf, Double coordYf) {
 		// TODO reemplazar por su implementacion
 		return new Retorno();
 	}

@@ -17,25 +17,19 @@ public class HashEsquinas {
 	}
 
 	private int h(Integer llave) {
+		System.out.println("tam" + tam);
 		int clave = llave % tam;
+		//REMOVE test comments
 		System.out.println("CLAVE> " + clave);
 		return clave;
 	}
 
 	public boolean pertenece(Integer llave, String coordenadas) {
-		System.out.println("pertenece>llave>" + llave + ":: coord"
-				+ coordenadas);
+		//REMOVE test comments
+		System.out.println("pertenece>llave>" + llave + ":: coord" + coordenadas);
 		int pos = h(llave);
 		return tabla[pos].existe(coordenadas);
 	}
-
-	/*
-	 * public boolean insertar(Double coordX, Double coordY, int cantNodos) {
-	 * String coordenadas = coordX + "-" + coordY; int llave = getLlave(coordX,
-	 * coordY); int cantActual = getCantNodos(); if (cantNodos > cantActual) {
-	 * int pos = h(llave); tabla[pos].insertarInicio(coordenadas); if
-	 * (pertenece(llave, coordenadas)) { return true; } } return false; }
-	 */
 
 	public Retorno insertar(Double coordX, Double coordY, int cantNodos) {
 		Retorno r = new Retorno();
@@ -44,15 +38,14 @@ public class HashEsquinas {
 		int cantEsquinasRegistradas = getCantEsquinas();
 
 		if (cantNodos > cantEsquinasRegistradas) {
-			System.out.println("insertar >> CantNodos: " + cantNodos
-					+ " cantEsquinasRegistradas: " + cantEsquinasRegistradas);
+			//REMOVE test comments
+			System.out.println(
+					"insertar >> CantNodos: " + cantNodos + " cantEsquinasRegistradas: " + cantEsquinasRegistradas);
 			r = registrarEsquina(llave, coordenadas);
 		} else {
-			System.out
-					.println("insertar >> Error, menos cantNods q esquinasReg || CantNodos: "
-							+ cantNodos
-							+ " cantEsquinasRegistradas: "
-							+ cantEsquinasRegistradas);
+			//REMOVE test comments
+			System.out.println("insertar >> Error, menos cantNods q esquinasReg || CantNodos: " + cantNodos
+					+ " cantEsquinasRegistradas: " + cantEsquinasRegistradas);
 			r.resultado = Retorno.Resultado.ERROR_1;
 		}
 		return r;
@@ -78,6 +71,7 @@ public class HashEsquinas {
 		for (int i = 0; i < tam; i++) {
 			r = r + this.tabla[i].getCantNodos();
 		}
+		//REMOVE test comments
 		System.out.println("getCantEsquinas:" + r);
 		return r;
 	}
