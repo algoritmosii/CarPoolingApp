@@ -4,7 +4,9 @@ import java.awt.Desktop;
 import java.net.URL;
 
 import listaDoble.Lista;
+import listaDoble.NodoLD;
 import ort.aed2.ob20152.Retorno;
+import utils.URLMapa;
 
 public class MapaGrafo implements IGrafoMapa {
 
@@ -105,24 +107,10 @@ public class MapaGrafo implements IGrafoMapa {
 		this.size++;
 	}
 
-	/*
-	 * @Override public void eliminarArista(int origen, int destino) {
-	 * this.verticesAdyacentes[origen].borrar(destino); }
-	 */
 	public boolean esVacio() {
 		return this.size == 0;
 	}
 
-	/*
-	 * public boolean sonAdyacentes(EsquinaNodo a, EsquinaNodo b) { return
-	 * this.verticesAdyacentes[a.get].existe(b); }
-	 * 
-	 * @Override public void eliminarVertice(int v) { this.nodosUsados[v] =
-	 * false; this.size--;
-	 * 
-	 * this.verticesAdyacentes[v] = new ListaVert(); for (int i = 0; i <
-	 * this.cantNodos; i++) { this.verticesAdyacentes[i].borrar(v); } }
-	 */
 	@Override
 	public ListaVert verticesAdyacentes(int v) {
 		return this.verticesAdyacentes[v];
@@ -139,27 +127,26 @@ public class MapaGrafo implements IGrafoMapa {
 		return false;
 	}
 
+	public void levantarMapaEnBrowser() {
+		URLMapa url = new URLMapa();
+		try {
+			
+			NodoLD[] nodos = this.esquinas.nodos().getNodosLD();
+			url.append(nodos);
+			levantarMapa(url.getUrl());
+			
+		} catch (Exception ex) {
+			System.out.println(" Error en levantarMapaEnBrowser.. "
+					+ ex.toString());
+			ex.printStackTrace();
+		}
+	}
+
 	public void levantarMapa(String url) {
 		try {
 			Desktop.getDesktop().browse(new URL(url).toURI());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void levantarMapaEnBrowser() {
-		String aux = "http://maps.googleapis.com/maps/api/staticmap?center=";
-		String dos = "Montevideo,Uruguay&zoom=13&size=1200x600&maptype=roadmap";
-		String nodo = getDataNodo();
-		String urlConstruida = aux + dos + nodo;
-		levantarMapa(urlConstruida);
-	}
-
-	private String getDataNodo() {
-		String aux = "&markers=color:yellow%7Clabel:1%7C-34.91,-56.16&markers=color:red%7Clabel:2%7C-34.91,-56.17&markers=color:green%7Clabel:3%7C-34.905,-56.19&sensor=false";
-		String coordenadas = "";
-		Lista[] lista = new Lista[this.size];
-		lista = this.esquinas.obtener();
-		return coordenadas;
 	}
 }

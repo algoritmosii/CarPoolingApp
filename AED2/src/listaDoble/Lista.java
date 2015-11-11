@@ -16,6 +16,7 @@ public class Lista implements IListaD {
 		this.setInicio(null);
 	}
 
+	// Pre: dato no debe ser null
 	@Override
 	public void insertarInicio(String dato) {
 		if (!existe(dato)) {
@@ -101,5 +102,59 @@ public class Lista implements IListaD {
 			nodoAux = nodoAux.getSiguiente();
 		}
 		return nodoAux;
+	}
+
+	public Lista getNodos() {
+		Lista nodos = new Lista();
+		System.out.println("Imprimir getNodos");
+		if (this.esVacia()) {
+			System.out.println("Lista vacia");
+		} else {
+			NodoLD nodoAux = this.inicio;
+			while (nodoAux != null) {
+				String elemento = nodoAux.getElemento();
+				System.out.println(elemento);
+				nodos.insertarInicio(elemento);
+				nodoAux = nodoAux.getSiguiente();
+			}
+		}
+		return nodos;
+	}
+
+	public String[] getNodosStr() {
+		String[] nodos = new String[this.getCantNodos()];
+		int i = 0;
+		System.out.println("Imprimir getNodos");
+		if (this.esVacia()) {
+			System.out.println("Lista vacia");
+		} else {
+			NodoLD nodoAux = this.inicio;
+			while (nodoAux != null) {
+				String elemento = nodoAux.getElemento();
+				System.out.println(elemento);
+				nodos[i] = elemento;
+				nodoAux = nodoAux.getSiguiente();
+				i++;
+			}
+		}
+		return nodos;
+	}
+
+	public NodoLD[] getNodosLD() {
+		NodoLD[] nodos = new NodoLD[this.getCantNodos()];
+		int i = 0;
+		System.out.println("Imprimir getNodos");
+		if (this.esVacia()) {
+			System.out.println("Lista vacia");
+		} else {
+			NodoLD nodoAux = this.inicio;
+			while (nodoAux != null) {
+				System.out.println("NodoLD " + nodoAux.getElemento());
+				nodos[i] = nodoAux;
+				nodoAux = nodoAux.getSiguiente();
+				i++;
+			}
+		}
+		return nodos;
 	}
 }

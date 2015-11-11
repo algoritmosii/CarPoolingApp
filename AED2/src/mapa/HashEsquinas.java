@@ -2,6 +2,7 @@ package mapa;
 
 import ort.aed2.ob20152.Retorno;
 import listaDoble.Lista;
+import listaDoble.NodoLD;
 
 public class HashEsquinas {
 
@@ -19,14 +20,10 @@ public class HashEsquinas {
 	private int h(Integer llave) {
 		System.out.println("tam" + tam);
 		int clave = llave % tam;
-		//REMOVE test comments
-		System.out.println("CLAVE> " + clave);
 		return clave;
 	}
 
 	public boolean pertenece(Integer llave, String coordenadas) {
-		//REMOVE test comments
-		System.out.println("pertenece>llave>" + llave + ":: coord" + coordenadas);
 		int pos = h(llave);
 		return tabla[pos].existe(coordenadas);
 	}
@@ -38,14 +35,8 @@ public class HashEsquinas {
 		int cantEsquinasRegistradas = getCantEsquinas();
 
 		if (cantNodos > cantEsquinasRegistradas) {
-			//REMOVE test comments
-			System.out.println(
-					"insertar >> CantNodos: " + cantNodos + " cantEsquinasRegistradas: " + cantEsquinasRegistradas);
 			r = registrarEsquina(llave, coordenadas);
 		} else {
-			//REMOVE test comments
-			System.out.println("insertar >> Error, menos cantNods q esquinasReg || CantNodos: " + cantNodos
-					+ " cantEsquinasRegistradas: " + cantEsquinasRegistradas);
 			r.resultado = Retorno.Resultado.ERROR_1;
 		}
 		return r;
@@ -71,8 +62,6 @@ public class HashEsquinas {
 		for (int i = 0; i < tam; i++) {
 			r = r + this.tabla[i].getCantNodos();
 		}
-		//REMOVE test comments
-		System.out.println("getCantEsquinas:" + r);
 		return r;
 	}
 
@@ -96,10 +85,20 @@ public class HashEsquinas {
 		return salida;
 	}
 
-	public Lista[] obtener() {
-		Lista[] nodos = new Lista[tam];
-		for (int i = 0; i < tam; i++) {
-			this.tabla[i].getCantNodos();
+	public Lista nodos() {
+		Lista nodos = new Lista();
+		String[] nodosAux;
+		int tablaLen = tabla.length;
+		String elemento = null;
+		for (int i = 0; i < tablaLen; i++) {
+			nodosAux = this.tabla[i].getNodosStr();
+			// iterar en nodosAux y agregar elenmentos a nodos
+			int len = nodosAux.length;
+			for (int x = 0; x < len; x++) {
+				elemento = nodosAux[x];
+				nodos.insertarInicio(elemento);
+				System.out.println(" ELEMENTO: " + elemento);
+			}
 		}
 		return nodos;
 	}

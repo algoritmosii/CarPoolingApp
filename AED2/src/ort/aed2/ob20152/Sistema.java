@@ -1,8 +1,5 @@
 package ort.aed2.ob20152;
 
-import java.awt.Desktop;
-import java.net.URL;
-
 import mapa.MapaGrafo;
 import ort.aed2.ob20152.Enumerados.estadoMovil;
 
@@ -191,6 +188,7 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno verMapa() {
+		// TODO filtrar mobiles en mapa por moviles disponibles(verde), deshabilitados(rojo), asignados(amarillo)
 		Retorno r = new Retorno();
 		this.mapa.levantarMapaEnBrowser();
 		r.resultado = Retorno.Resultado.OK;
