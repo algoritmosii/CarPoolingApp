@@ -108,8 +108,34 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno asignarUbicacionMovil(String matricula, Double coordX, Double coordY) {
-		// TODO reemplazar por su implementacion
-		return new Retorno();
+		Retorno r = new Retorno();
+		if (coordenadasValidas(coordX, coordY)) {
+			if (mapa.existeEsquina(coordX, coordY)) {
+				r.resultado = Retorno.Resultado.ERROR_1;
+				r.valorString = "Coordenadas no existen.";
+				return r;
+			}
+			r.resultado = Retorno.Resultado.ERROR_1;
+			r.valorString = "Coordenadas invalidas.";
+			return r;
+		}
+		if (this.mapa.existeUnMovil(coordX, coordY)) {
+			r.resultado = Retorno.Resultado.ERROR_2;
+		}
+
+		if (abb.buscar(matricula) == null) {
+			r.resultado = Retorno.Resultado.ERROR_3;
+			r.valorString = "El movil no existe en el sistema";
+			return r;
+		}
+		r.resultado = Retorno.Resultado.ERROR_1;
+		if (this.mapa.asignarUbicacion(matricula, coordX, coordY)) {
+			estadoMovil estado = estadoMovil.ASGINADO;
+			// cambiar estado
+			abb.buscar(matricula).setEstado(estado);
+			r.resultado = Retorno.Resultado.OK;
+		}
+		return r;
 	}
 
 	@Override
@@ -188,7 +214,8 @@ public class Sistema implements ISistema {
 
 	@Override
 	public Retorno verMapa() {
-		// TODO filtrar mobiles en mapa por moviles disponibles(verde), deshabilitados(rojo), asignados(amarillo)
+		// TODO filtrar mobiles en mapa por moviles disponibles(verde),
+		// deshabilitados(rojo), asignados(amarillo)
 		Retorno r = new Retorno();
 		this.mapa.levantarMapaEnBrowser();
 		r.resultado = Retorno.Resultado.OK;

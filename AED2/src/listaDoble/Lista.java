@@ -157,4 +157,33 @@ public class Lista implements IListaD {
 		}
 		return nodos;
 	}
+
+	public boolean existeMovil(String valor) {
+		NodoLD nodoAux = this.inicio;
+		while (nodoAux != null) {
+			if (nodoAux.getElemento().equals(valor)) {
+				if (!nodoAux.getMatricula().equals("")) {
+					return true;
+				}
+			}
+			nodoAux = nodoAux.getSiguiente();
+		}
+		System.out.println("Lista.existe=false. Valor: " + valor);
+		return false;
+	}
+
+	public boolean asignarMovilAEsquina(String coordenadas, String matricula) {
+		NodoLD nodoAux = this.inicio;
+		while (nodoAux != null) {
+			if (nodoAux.getElemento().equals(coordenadas)) {
+				if (!nodoAux.getMatricula().equals("")) {
+					nodoAux.setMatricula(matricula);
+					return true;
+				}
+			}
+			nodoAux = nodoAux.getSiguiente();
+		}
+		System.out.println("asignarMovilAEsquina. Valor: " + coordenadas);
+		return false;
+	}
 }

@@ -5,6 +5,7 @@ public class NodoLD {
 	private String dato;
 	private String color;
 	private NodoLD siguiente;
+	private String matricula;
 
 	public NodoLD getSiguiente() {
 		return siguiente;
@@ -28,6 +29,14 @@ public class NodoLD {
 
 	public void setDato(String dato) {
 		this.dato = dato;
+	}
+	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 	public String getColor() {

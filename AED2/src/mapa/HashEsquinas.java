@@ -102,4 +102,40 @@ public class HashEsquinas {
 		}
 		return nodos;
 	}
+
+	public boolean existeUnMovilEnXY(Double coordX, Double coordY) {
+		int llave = getLlave(coordX, coordY);
+		String coordenadas = coordX + "*" + coordY;
+		// hacer otro pertenece y chequear que la matricula no sea null
+
+		if (existeMovil(llave, coordenadas)) {
+			return true;
+		}
+		return false;
+	}
+
+	private boolean existeMovil(int llave, String coordenadas) {
+		int pos = h(llave);
+		return tabla[pos].existeMovil(coordenadas);
+
+	}
+
+	public boolean existeEsquinaXY(Double coordX, Double coordY) {
+		int llave = getLlave(coordX, coordY);
+		String coordenadas = coordX + "*" + coordY;
+		if (pertenece(llave, coordenadas)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean asignarUbicacionAMovil(Double coordX, Double coordY, String matricula) {
+		int llave = getLlave(coordX, coordY);
+		String coordenadas = coordX + "*" + coordY;
+		int pos = h(llave);
+		if (tabla[pos].asignarMovilAEsquina(coordenadas, matricula)) {
+			return true;
+		}
+		return false;
+	}
 }

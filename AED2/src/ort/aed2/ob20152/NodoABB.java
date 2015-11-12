@@ -21,6 +21,8 @@ public class NodoABB {
 	public void setDato(Movil dato) {
 		this.movil = dato;
 	}
-
-
+	
+	public void setEstado(Enumerados.estadoMovil estado) {
+		movil.setEstado(estado);
+	}
 }

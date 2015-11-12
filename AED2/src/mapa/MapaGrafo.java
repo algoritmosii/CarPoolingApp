@@ -2,8 +2,6 @@ package mapa;
 
 import java.awt.Desktop;
 import java.net.URL;
-
-import listaDoble.Lista;
 import listaDoble.NodoLD;
 import ort.aed2.ob20152.Retorno;
 import utils.URLMapa;
@@ -130,14 +128,13 @@ public class MapaGrafo implements IGrafoMapa {
 	public void levantarMapaEnBrowser() {
 		URLMapa url = new URLMapa();
 		try {
-			
+
 			NodoLD[] nodos = this.esquinas.nodos().getNodosLD();
 			url.append(nodos);
 			levantarMapa(url.getUrl());
-			
+
 		} catch (Exception ex) {
-			System.out.println(" Error en levantarMapaEnBrowser.. "
-					+ ex.toString());
+			System.out.println(" Error en levantarMapaEnBrowser.. " + ex.toString());
 			ex.printStackTrace();
 		}
 	}
@@ -149,4 +146,26 @@ public class MapaGrafo implements IGrafoMapa {
 			e.printStackTrace();
 		}
 	}
+
+	public boolean existeEsquina(Double coordX, Double coordY) {
+		if (this.esquinas.existeEsquinaXY(coordX, coordY)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean existeUnMovil(Double coordX, Double coordY) {
+		if (this.esquinas.existeUnMovilEnXY(coordX, coordY)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean asignarUbicacion(String matricula, Double coordX, Double coordY) {
+		if (this.esquinas.asignarUbicacionAMovil(coordX, coordY, matricula)) {
+			return true;
+		}
+		return false;
+	}
+
 }

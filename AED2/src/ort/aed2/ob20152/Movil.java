@@ -6,6 +6,14 @@ public class Movil {
 	public String nombreConductor;
 	public Enumerados.estadoMovil estado;
 			
+	public Enumerados.estadoMovil getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Enumerados.estadoMovil estado) {
+		this.estado = estado;
+	}
+
 	public Movil(String matricula, String nombreConductor, Enumerados.estadoMovil estadoMovil) {
 		super();
 		this.matricula = matricula;
