@@ -15,6 +15,14 @@ public class URLMapa {
 
 	public URLMapa() {
 
+	}	
+
+	public String getColorPin() {
+		return colorPin;
+	}
+
+	public void setColorPin(String colorPin) {
+		this.colorPin = colorPin;
 	}
 
 	public String getX() {

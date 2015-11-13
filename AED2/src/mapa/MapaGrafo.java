@@ -141,11 +141,11 @@ public class MapaGrafo implements IGrafoMapa {
                     Enumerados.estadoMovil estado = n.getDato().getEstado();
 
                     if (estado.equals(Enumerados.estadoMovil.DISPONIBLE)) {
-                        url.setColor("green");
-                    } else if (estado.equals(Enumerados.estadoMovil.ASIGNADO)) {
-                        url.setColor("yellow");
+                        url.setColorPin("green");
+                    } else if (estado.equals(Enumerados.estadoMovil.ASGINADO)) {
+                        url.setColorPin("yellow");
                     } else if (estado.equals(Enumerados.estadoMovil.DESHABILITADO)) {
-                        url.setColor("red");
+                        url.setColorPin("red");
                     }
                 }
             }
