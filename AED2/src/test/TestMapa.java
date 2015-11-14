@@ -132,7 +132,7 @@ public class TestMapa {
 	
 	@Test
 	public void testVerMapa() {
-
+		
 		System.out.println(" test: testVerMapa()");
 		ISistema sistema;
 		sistema = new Sistema();

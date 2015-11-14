@@ -134,6 +134,7 @@ public class MapaGrafo implements IGrafoMapa {
 
             NodoLD[] nodos = this.esquinas.nodos().getNodosLD();
             for (int i = 0; i < nodos.length; i++) {
+            	if (nodos[i].getMatricula() != null){
                 if (!nodos[i].getMatricula().equals("")) {
 
                     NodoABB n = abb.buscar(nodos[1].getMatricula());
@@ -148,6 +149,7 @@ public class MapaGrafo implements IGrafoMapa {
                         url.setColorPin("red");
                     }
                 }
+            }
             }
             url.append(nodos);
             levantarMapa(url.getUrl());
