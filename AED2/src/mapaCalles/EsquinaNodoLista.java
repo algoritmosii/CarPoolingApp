@@ -1,11 +1,11 @@
-package mapa;
+package mapaCalles;
 
-public class EsquinaNodo {
+public class EsquinaNodoLista {
 
 	private double coordX;
 	private double coordY;
-	private EsquinaNodo siguiente;
-	private EsquinaNodo anterior;
+	private EsquinaNodoLista siguiente;
+	private EsquinaNodoLista anterior;
 
 	public double getCoordX() {
 		return coordX;
@@ -23,23 +23,23 @@ public class EsquinaNodo {
 		this.coordX = coordX;
 	}
 
-	public EsquinaNodo getSiguiente() {
+	public EsquinaNodoLista getSiguiente() {
 		return siguiente;
 	}
 
-	public void setSiguiente(EsquinaNodo siguiente) {
+	public void setSiguiente(EsquinaNodoLista siguiente) {
 		this.siguiente = siguiente;
 	}
 
-	public EsquinaNodo getAnterior() {
+	public EsquinaNodoLista getAnterior() {
 		return anterior;
 	}
 
-	public void setAnterior(EsquinaNodo anterior) {
+	public void setAnterior(EsquinaNodoLista anterior) {
 		this.anterior = anterior;
 	}
 
-	public EsquinaNodo() {
+	public EsquinaNodoLista() {
 
 	}
 }

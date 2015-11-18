@@ -1,25 +1,25 @@
-package mapa;
+package mapaCalles;
 
-public class ListaVert implements ILista {
+public class ListaEsquinas implements ILista {
 
-	EsquinaNodo inicio;
+	EsquinaNodoLista inicio;
 	int peso;
 
-	public EsquinaNodo getInicio() {
+	public EsquinaNodoLista getInicio() {
 		return inicio;
 	}
 
-	public void setInicio(EsquinaNodo inicio) {
+	public void setInicio(EsquinaNodoLista inicio) {
 		this.inicio = inicio;
 	}
 
-	public ListaVert() {
+	public ListaEsquinas() {
 		this.setInicio(null);
 	}
 
 	@Override
 	public void insertarInicio(int dest, int peso) {
-		EsquinaNodo nuevoNodo = new EsquinaNodo();
+		EsquinaNodoLista nuevoNodo = new EsquinaNodoLista();
 		nuevoNodo.setSiguiente(this.inicio);
 		this.inicio = nuevoNodo;
 	}
@@ -34,7 +34,7 @@ public class ListaVert implements ILista {
 		if (this.esVacia()) {
 			System.out.println("Lista vacia");
 		} else {
-			EsquinaNodo nodoAux = this.inicio;
+			EsquinaNodoLista nodoAux = this.inicio;
 			while (nodoAux != null) {
 				System.out.println("X: " + nodoAux.getCoordX() + "-" + "Y: "
 						+ nodoAux.getCoordY());
@@ -58,7 +58,7 @@ public class ListaVert implements ILista {
 
 	@Override
 	public boolean existe(double x, double y) {
-		EsquinaNodo nodoAux = this.inicio;
+		EsquinaNodoLista nodoAux = this.inicio;
 		while (nodoAux != null) {
 			if (nodoAux.getCoordX() == x && nodoAux.getCoordY() == y) {
 				return true;

@@ -1,4 +1,4 @@
-package mapa;
+package mapaCalles;
 
 public interface IGrafoMapa {
 
@@ -14,7 +14,7 @@ public interface IGrafoMapa {
 
 	public boolean sonAdyacentes(int origen, int destino);
 
-	public ListaVert verticesAdyacentes(int vertice);
+	public ListaEsquinas verticesAdyacentes(int vertice);
 	
 	//public boolean existeVertice(int v);
 

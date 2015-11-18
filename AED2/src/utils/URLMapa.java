@@ -1,6 +1,7 @@
 package utils;
 
 import listaDoble.NodoLD;
+import mapaCalles.EsquinaNodoHash;
 
 public class URLMapa {
 
@@ -49,6 +50,41 @@ public class URLMapa {
 		this.url = url;
 	}
 
+	public void append(EsquinaNodoHash[] nodos) {
+		try {
+			int cant = nodos.length;
+			String[] x_y = new String[3];
+			StringBuilder urlBuilder = new StringBuilder();
+			String puntoDelMapa = null;
+			urlBuilder.append(urlGoogleAPIs);
+
+			for (int i = 0; i < cant; i++) {
+				String elemento = nodos[i].getCoordenadas();
+				if (!elemento.equals("")) {
+					System.out.println("");
+
+					x_y = elemento.split("\\*");
+					this.x = x_y[0].substring(0, 6);
+					this.y = x_y[1].substring(0, 6);
+					this.colorPin = nodos[i].getColorPinMapa();
+
+					if (!this.x.equals("") && !this.y.equals("")
+							&& !this.colorPin.equals("")) {
+						puntoDelMapa = colorMarkers + this.colorPin + label
+								+ this.x + "," + this.y;
+						urlBuilder.append(puntoDelMapa);
+					}
+				}
+			}
+			urlBuilder.append(sensorFalse);
+			this.url = urlBuilder.toString();
+		} catch (Exception e) {
+			System.out.println("error en append de URL " + e.toString()
+					+ " trace: ");
+			e.printStackTrace();
+		}
+	}
+	
 	public void append(NodoLD[] nodos) {
 		try {
 			int cant = nodos.length;

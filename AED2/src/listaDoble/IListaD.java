@@ -19,4 +19,6 @@ public interface IListaD {
 	int getCantNodos();
 
 	void imprimir(int pos);
+
+	void insertarInicio(String dato, String colorPin);
 }

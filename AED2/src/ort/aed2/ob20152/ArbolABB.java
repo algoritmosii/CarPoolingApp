@@ -103,7 +103,7 @@ public class ArbolABB {
 	}
 	public void mostrar() {
 		if (esVacio())
-			System.out.println("No hay móviles registrados.");
+			System.out.println("No hay mï¿½viles registrados.");
 		else
 			mostrar(raiz);
 	}

@@ -1,6 +1,6 @@
 package ort.aed2.ob20152;
 
-import mapa.MapaGrafo;
+import mapaCalles.MapaGrafo;
 import ort.aed2.ob20152.Enumerados.estadoMovil;
 
 public class Sistema implements ISistema {
@@ -8,12 +8,9 @@ public class Sistema implements ISistema {
 	MapaGrafo mapa;
 	ArbolABB abb = new ArbolABB();
 
-	// 2. deberia ejecutar el registrarEsquina para varias coord como parte de
-	// inicializarSistema?
 	public Retorno inicializarSistema(int cantPuntos) {
 		Retorno r = new Retorno();
-		mapa = new MapaGrafo();
-
+		this.mapa = new MapaGrafo();
 		if (cantPuntos <= 0) {
 			r.resultado = Retorno.Resultado.ERROR_1;
 		} else if (mapa.crearGrafoVacio(cantPuntos))
@@ -38,7 +35,6 @@ public class Sistema implements ISistema {
 			r.valorString = "Ya existe un mï¿½vil con la misma matrï¿½cula.";
 			return r;
 		}
-		// Creo el movil
 		Movil m = new Movil(matricula, conductor, estado);
 
 		abb.insertar(m);
@@ -75,12 +71,10 @@ public class Sistema implements ISistema {
 				r.valorString = "El mï¿½vil estï¿½ asignado, por lo tanto no se puede eliminar.";
 				return r;
 			}
-
 			abb.eliminar(matricula);
 			r.resultado = Retorno.Resultado.OK;
 			return r;
 		}
-
 		r.resultado = Retorno.Resultado.ERROR_1;
 		r.valorString = "No existe el mï¿½vil pasado como parï¿½metro.";
 
@@ -110,7 +104,7 @@ public class Sistema implements ISistema {
 	public Retorno asignarUbicacionMovil(String matricula, Double coordX, Double coordY) {
 		Retorno r = new Retorno();
 		if (coordenadasValidas(coordX, coordY)) {
-			if (mapa.existeEsquina(coordX, coordY)) {
+			if (mapa.esquinas.existeEsquina(coordX, coordY)) {
 				r.resultado = Retorno.Resultado.ERROR_1;
 				r.valorString = "Coordenadas no existen.";
 				return r;

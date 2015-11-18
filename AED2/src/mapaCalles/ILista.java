@@ -1,4 +1,4 @@
-package mapa;
+package mapaCalles;
 
 public interface ILista {
 

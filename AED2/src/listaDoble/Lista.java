@@ -18,7 +18,7 @@ public class Lista implements IListaD {
 
 	// Pre: dato no debe ser null
 	@Override
-	public void insertarInicio(String dato) {
+	public void insertarInicio(String dato, String colorPin) {
 		if (!existe(dato)) {
 			NodoLD nuevoNodo = new NodoLD(dato);
 			nuevoNodo.setSiguiente(this.inicio);
@@ -185,5 +185,11 @@ public class Lista implements IListaD {
 		}
 		System.out.println("asignarMovilAEsquina. Valor: " + coordenadas);
 		return false;
+	}
+
+	@Override
+	public void insertarInicio(String valor) {
+		// TODO Auto-generated method stub
+		
 	}
 }
