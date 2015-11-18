@@ -1,6 +1,5 @@
 package ort.aed2.ob20152;
 
-import listaDoble.Lista;
 import mapaCalles.EsquinaNodoHash;
 import mapaCalles.MapaGrafo;
 import ort.aed2.ob20152.Enumerados.estadoMovil;
@@ -106,37 +105,34 @@ public class Sistema implements ISistema {
 	public Retorno asignarUbicacionMovil(String matricula, Double coordX, Double coordY) {
 		Retorno r = new Retorno();
 		if (coordenadasValidas(coordX, coordY)) {
-			if (mapa.esquinas.existeEsquina(coordX, coordY)) {
+			if (!mapa.esquinas.existeEsquina(coordX, coordY)) {
 				r.resultado = Retorno.Resultado.ERROR_1;
 				r.valorString = "Coordenadas no existen.";
 				return r;
+			} else if (this.mapa.existeUnMovil(coordX, coordY)) {
+				r.resultado = Retorno.Resultado.ERROR_2;
+				return r;
 			}
+			if (abb.buscar(matricula) == null) {
+				r.resultado = Retorno.Resultado.ERROR_3;
+				r.valorString = "El movil no existe en el sistema";
+				return r;
+			}
+			if (this.mapa.asignarUbicacion(matricula, coordX, coordY)) {
+				estadoMovil estado = estadoMovil.ASGINADO;
+				abb.buscar(matricula).setEstado(estado);
+				r.resultado = Retorno.Resultado.OK;
+				return r;
+			}
+		} else {
 			r.resultado = Retorno.Resultado.ERROR_1;
-			r.valorString = "Coordenadas invalidas.";
-			return r;
-		}
-		if (this.mapa.existeUnMovil(coordX, coordY)) {
-			r.resultado = Retorno.Resultado.ERROR_2;
-		}
-
-		if (abb.buscar(matricula) == null) {
-			r.resultado = Retorno.Resultado.ERROR_3;
-			r.valorString = "El movil no existe en el sistema";
-			return r;
-		}
-		r.resultado = Retorno.Resultado.ERROR_1;
-		if (this.mapa.asignarUbicacion(matricula, coordX, coordY)) {
-			estadoMovil estado = estadoMovil.ASGINADO;
-			// cambiar estado
-			abb.buscar(matricula).setEstado(estado);
-			r.resultado = Retorno.Resultado.OK;
+			r.valorString = "Coordenadas no existen.";
 		}
 		return r;
 	}
 
 	@Override
 	public Retorno buscarMovil(String matricula) {
-		// TODO reemplazar por su implementacion
 		Retorno r = new Retorno();
 		String x = "";
 		String y = "";

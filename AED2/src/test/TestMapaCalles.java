@@ -197,8 +197,78 @@ public class TestMapaCalles {
 			Double mNAVY = -56.1678003;
 			Retorno ret6 = sistema.registrarEsquina(mNAVX, mNAVY);
 			assertEquals(Retorno.Resultado.ERROR_1, ret6.resultado);
-	
+			
+			// Datos de la prueba
+			String conductor = "3.702.156-9";
+			String matricula = "ZDB 1234";
+
+			String conductor2 = "4.702.156-9";
+			String matricula2 = "BDC 1234";
+
+			String conductor3 = "5.702.156-9";
+			String matricula3 = "CDC 1234";
+
+			String conductor4 = "7.702.156-9";
+			String matricula4 = "FDC 1234";
+
+			String conductor5 = "9.702.156-9";
+			String matricula5 = "ZDC 1234";
+
+			// Estimulo
+			Retorno r1 = sistema.registrarMovil(matricula, conductor);
+			assertEquals(Retorno.Resultado.OK, r1.resultado); // Deberia retornar OK
+
+			Retorno r2 = sistema.registrarMovil(matricula2, conductor2);
+			assertEquals(Retorno.Resultado.OK, r2.resultado); // Deberia retornar OK
+
+			Retorno r3 = sistema.registrarMovil(matricula3, conductor3);
+			assertEquals(Retorno.Resultado.OK, r3.resultado); // Deberia retornar OK
+
+			Retorno r4 = sistema.registrarMovil(matricula4, conductor4);
+			assertEquals(Retorno.Resultado.OK, r4.resultado); // Deberia retornar OK
+
+			Retorno r5 = sistema.registrarMovil(matricula5, conductor5);
+			assertEquals(Retorno.Resultado.OK, r4.resultado); // Deberia retornar OK
+
+			// deshabilitar movil
+			Retorno r6 = sistema.deshabilitarMovil(matricula4);
+			assertEquals(Retorno.Resultado.OK, r6.resultado);
+
+			// eliminar movil
+			//Retorno r7 = sistema.eliminarMovil(matricula2);
+			//assertEquals(Retorno.Resultado.OK, r7.resultado);
+
+			
+			System.out.println("Asignar Movil a esquina");
+			
+			
+			
+			sistema.asignarUbicacionMovil(matricula5, immX, immY);
+			
+			
+			
+			sistema.asignarUbicacionMovil(matricula, uniORTX, uniORTY);		
+			
+			
+			
+			sistema.asignarUbicacionMovil(matricula3, teatroSolisX, teatroSolisY);
+			
+			
+			
+			
+			sistema.asignarUbicacionMovil(matricula2, facQuimicaX, facQuimicaY);
+			
+
+
+			sistema.asignarUbicacionMovil(matricula4, tabernaDiabloX, tabernaDiabloY);
+
+						
+			
+			
 			System.out.println("Levanta MAPA");
+
+			
+
 			sistema.verMapa();
 		}
 	}

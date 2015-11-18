@@ -70,8 +70,9 @@ public class MapaHashCerrado {
 
 					pos = h(llave, x);
 
-					if (esquinas[pos].getCoordenadas().equals("")) {
+					if (this.esquinas[pos].getCoordenadas().equals("")) {
 						System.out.println("posicion libre en clave " + pos);
+						this.esquinas[pos] = esquina;
 						esquinas[pos].setCoordenadas(esquina.getCoordenadas());
 						esquinas[pos].setClave(pos);
 						esquina.setClave(pos);
@@ -159,13 +160,18 @@ public class MapaHashCerrado {
 	}
 
 	public boolean existeUnMovilEnXY(Double coordX, Double coordY) {
-		int llave = getLlave(coordX, coordY);
 		String coordenadas = coordX + "*" + coordY;
-		// hacer otro pertenece y chequear que la matricula no sea null
-
-		/*
-		 * if (existeMovil(llave, coordenadas)) { return true; }
-		 */
+		String nada = "";
+		int tam = esquinas.length;
+		for (int i = 0; i < tam; i++) {
+			if (this.esquinas[i] != null && this.esquinas[i].getCoordenadas().equals(coordenadas)) {
+				if (this.esquinas[i].getMatriculaMovil().equals(nada)) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
@@ -210,7 +216,7 @@ public class MapaHashCerrado {
 						NodoABB n = abb.buscar(esquinas[i].getMatriculaMovil());
 
 						Enumerados.estadoMovil estado = n.getDato().getEstado();
-						
+
 						if (estado.equals(Enumerados.estadoMovil.DISPONIBLE)) {
 							esquinas[i].setColorPinMapa("green");
 						} else if (estado.equals(Enumerados.estadoMovil.ASGINADO)) {
