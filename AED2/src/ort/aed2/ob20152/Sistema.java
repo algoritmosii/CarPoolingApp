@@ -1,5 +1,7 @@
 package ort.aed2.ob20152;
 
+import listaDoble.Lista;
+import mapaCalles.EsquinaNodoHash;
 import mapaCalles.MapaGrafo;
 import ort.aed2.ob20152.Enumerados.estadoMovil;
 
@@ -135,7 +137,30 @@ public class Sistema implements ISistema {
 	@Override
 	public Retorno buscarMovil(String matricula) {
 		// TODO reemplazar por su implementacion
-		return new Retorno();
+		Retorno r = new Retorno();
+		String x = "";
+		String y = "";
+		NodoABB nodo = abb.buscar(matricula);
+		if (nodo != null) {
+			EsquinaNodoHash[] l = mapa.esquinas.esquinas;
+			for (int i=0;i< l.length;i++){
+				if (l[i].getMatriculaMovil().equals(matricula)) {
+					x = l[i].getX().toString();
+					y = l[i].getY().toString();
+					
+					System.out.println(nodo.getDato().getMatricula() + ";" + nodo.getDato().getNombreConductor() + ";" + nodo.getDato().getEstado().toString() + ";" + x + ";" + y);
+					r.resultado = Retorno.Resultado.OK;
+					
+				}
+			}					
+			
+		} else {
+		
+			r.resultado = Retorno.Resultado.ERROR_1;
+			r.valorString = "El movil no pudo ser encontrado";
+			
+		}
+		return r;
 	}
 
 	@Override
